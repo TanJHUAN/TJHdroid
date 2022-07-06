@@ -1,5 +1,8 @@
 package com.example.tjhdroid.views.overlay.mylocation;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,6 +11,8 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -15,12 +20,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import com.example.tjhdroid.api.IMapController;
 import com.example.tjhdroid.api.IMapView;
 import com.example.tjhdroid.config.Configuration;
 import com.example.tjhdroid.library.R;
 import com.example.tjhdroid.utils.GeoPoint;
 import com.example.tjhdroid.utils.TileSystem;
+import com.example.tjhdroid.views.MapController;
 import com.example.tjhdroid.views.MapView;
 import com.example.tjhdroid.views.Projection;
 import com.example.tjhdroid.views.overlay.IOverlayMenuProvider;
@@ -28,6 +37,7 @@ import com.example.tjhdroid.views.overlay.Overlay;
 import com.example.tjhdroid.views.overlay.Overlay.Snappable;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Marc Kurtz
@@ -67,6 +77,8 @@ public class MyLocationNewOverlay extends Overlay implements IMyLocationConsumer
      */
     protected boolean enableAutoStop = true;
     private Location mLocation;
+	private LocationManager mLocationManager;
+	private String provider;
     private final GeoPoint mGeoPoint = new GeoPoint(0, 0); // for reuse
     private boolean mIsLocationEnabled = false;
     protected boolean mIsFollowing = false; // follow location updates
@@ -85,7 +97,9 @@ public class MyLocationNewOverlay extends Overlay implements IMyLocationConsumer
     private boolean mOptionsMenuEnabled = true;
 
     private boolean wasEnabledOnPause = false;
-    // ===========================================================
+
+	private LocationListener locationListener;
+	// ===========================================================
     // Constructors
     // ===========================================================
 
@@ -101,10 +115,8 @@ public class MyLocationNewOverlay extends Overlay implements IMyLocationConsumer
         mCirclePaint.setARGB(0, 100, 100, 255);
         mCirclePaint.setAntiAlias(true);
         mPaint.setFilterBitmap(true);
-
-
 		setPersonIcon(((BitmapDrawable)mapView.getContext().getResources().getDrawable(R.drawable.person)).getBitmap());
-		setDirectionIcon(((BitmapDrawable)mapView.getContext().getResources().getDrawable(R.drawable.round_navigation_white_48)).getBitmap());
+		setDirectionIcon(((BitmapDrawable)mapView.getContext().getResources().getDrawable(R.drawable.ic_mylocation)).getBitmap());
 
 		// Calculate position of person icon's feet, scaled to screen density
 		mPersonHotspot = new PointF();
@@ -564,4 +576,66 @@ public class MyLocationNewOverlay extends Overlay implements IMyLocationConsumer
 		mDirectionArrowCenterX = mDirectionArrowBitmap.getWidth() * pHorizontal;
 		mDirectionArrowCenterY = mDirectionArrowBitmap.getHeight() * pVertical;
 	}
+
+	//设置以当前位置为地图中心
+	public void setCenter(MapController mMapController){
+		GeoPoint geopoint = new GeoPoint(mLocation.getLatitude(), mLocation.getLongitude());
+		mMapController.setCenter(geopoint);
+	}
+
+
+
+	//获取当前位置的经纬度
+	public GeoPoint getGeoPoint(Context ctx, MapView mapView) throws Exception{
+		if (ActivityCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+				|| ActivityCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			//获取定位服务
+			mLocationManager = (LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE);
+			//获取当前可用的位置控制器
+			List<String> list = mLocationManager.getProviders(true);
+			if (list.contains(LocationManager.NETWORK_PROVIDER)) {
+				//是否为网络位置控制器
+				provider = LocationManager.NETWORK_PROVIDER;
+			} else if (list.contains(LocationManager.GPS_PROVIDER)) {
+				//是否为GPS位置控制器
+				provider = LocationManager.GPS_PROVIDER;
+			} else {
+				Toast.makeText(ctx, "请检查网络或GPS是否打开", Toast.LENGTH_SHORT).show();
+				throw new Exception("请检查网络或GPS是否打开");
+			}
+			mLocation = mLocationManager.getLastKnownLocation(provider);
+			if (mLocation != null) {
+				locationListener = new LocationListener() {
+					@Override
+					public void onLocationChanged(@NonNull Location location) {
+						try {
+							GeoPoint geopoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+							//设置地图中心 //地图移动到某个点
+							mapView.getController().animateTo(geopoint);
+							Toast.makeText(ctx, "定位更新", Toast.LENGTH_LONG).show();
+//							if (is_gjhz) {
+//								pathOverlay.addPoint(geopoint);
+//							}
+						} catch (Exception ex) {
+
+						}
+					}
+				};
+				//绑定定位事件，监听位置是否改变
+				// 第一个参数为控制器类型第二个参数为监听位置变化的时间间隔（单位：毫秒）
+				// 第三个参数为位置变化的间隔（单位：米）第四个参数为位置监听器
+				mLocationManager.requestLocationUpdates(provider, 2000, 2, locationListener);
+				//获取当前位置，这里只用到了经纬度
+				GeoPoint geopoint = new GeoPoint(mLocation.getLatitude(), mLocation.getLongitude());
+				return geopoint;
+			}
+		}
+		return null;
+
+	}
+
+
+
+
+
 }

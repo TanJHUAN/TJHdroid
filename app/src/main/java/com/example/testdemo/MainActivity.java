@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
@@ -45,9 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
     private ScaleBarOverlay mScaleBarOverlay;
 
+    private LatLonGridlineOverlay2 gridOverlay;
+
     ArrayList<OverlayItem> items = new ArrayList<OverlayItem>();
 
     List<GeoPoint> geoPoints = new ArrayList<GeoPoint>();
+
+    private Button btGrid;
+
+    private Button btLocation;
+
+    boolean isGridOpen = true;
+
+
 
     private String permissions[] = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -59,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mapView = findViewById(R.id.tjh_map);
+        btGrid = findViewById(R.id.bt_grid);
+        btLocation = findViewById(R.id.bt_location);
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
         mapView.setTileSource(TileSourceFactory.MAPNIK);
@@ -80,18 +93,43 @@ public class MainActivity extends AppCompatActivity {
         mMinimapOverlay.setWidth(dm.widthPixels / 5);
         mMinimapOverlay.setHeight(dm.heightPixels / 5);
         mapView.getOverlays().add(this.mMinimapOverlay);
-        //定位
-        mMyLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(this),mapView);
-        mMyLocationOverlay.enableMyLocation();
-        mapView.getOverlays().add(mMyLocationOverlay);
+
         //指南针
         compassOverlay = new CompassOverlay(this, new InternalCompassOrientationProvider(this), mapView);
         compassOverlay.enableCompass();
         mapView.getOverlays().add(compassOverlay);
         //网格
+        btGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isGridOpen){
+                    gridOverlay = new LatLonGridlineOverlay2();
+                    mapView.getOverlays().add(gridOverlay);
+                    isGridOpen = false;
+                }else {
+                    gridOverlay.setEnabled(false);
+                    isGridOpen = true;
+                }
+            }
+        });
 
-        LatLonGridlineOverlay2 gridOverlay = new LatLonGridlineOverlay2();
-        mapView.getOverlays().add(gridOverlay);
+        btLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //定位
+                mMyLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(ctx),mapView);
+                mMyLocationOverlay.enableMyLocation();
+                GeoPoint geoPoint = null;
+                try {
+                    geoPoint = mMyLocationOverlay.getGeoPoint(ctx,mapView);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                mapController.animateTo(geoPoint);
+                mapView.getOverlays().add(mMyLocationOverlay);
+            }
+        });
+
 
         //旋转按钮
         mRotationGestureOverlay = new RotationGestureOverlay(this, mapView);
@@ -124,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
         }, this);
         mOverlay.setFocusItemsOnTap(true);
         mapView.getOverlays().add(mOverlay);
+
         //PathOverlay 路线Overlay
         GeoPoint gp1 = new GeoPoint(40.067225, 116.369758);
         GeoPoint gp2 = new GeoPoint(40.064808, 116.346362);
