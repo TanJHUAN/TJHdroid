@@ -1,4 +1,4 @@
-package com.example.tjhdroid;
+package com.example.testdemo;
 
 import android.Manifest;
 import android.content.Context;

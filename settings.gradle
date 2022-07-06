@@ -1,2 +1,3 @@
 rootProject.name = "TJHdroid"
 include ':app'
+include ':third-party'

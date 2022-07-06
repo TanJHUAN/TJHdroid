@@ -43,7 +43,7 @@ public class Polyline extends PolyOverlayWithIW {
     public Polyline(final MapView pMapView, final boolean pUsePath, final boolean pClosePath) {
         super(pMapView, pUsePath, pClosePath);
         //default as defined in Google API:
-        mOutlinePaint.setColor(Color.BLACK);
+        mOutlinePaint.setColor(Color.RED);
         mOutlinePaint.setStrokeWidth(10.0f);
         mOutlinePaint.setStyle(Paint.Style.STROKE);
         mOutlinePaint.setAntiAlias(true);
