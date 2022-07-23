@@ -35,7 +35,11 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Osm"
             android:usesCleartextTraffic="true">
-        <activity android:name="com.example.testdemo.HomeActivity" android:exported="true">
+        <activity android:name="com.example.testdemo.overlaytest.GoogleSourceActivity">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.HomeActivity"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -45,7 +49,6 @@
         <activity android:name="com.example.testdemo.overlaytest.XYTileSourceActivity">
         </activity>
         <activity android:name="com.example.testdemo.MainActivity">
-
         </activity>
     </application>
 

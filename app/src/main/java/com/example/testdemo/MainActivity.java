@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
@@ -58,12 +60,19 @@ public class MainActivity extends AppCompatActivity {
 
     boolean isGridOpen = true;
 
+    private ImageView ivAdd;
 
+    private ImageView ivRemove;
+
+    private MyMarkerOverlay myMarkerOverlay;
 
     private String permissions[] = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_FINE_LOCATION,
     };
+
+    private TextView tvLatitude;
+    private TextView tvLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
         mapView = findViewById(R.id.tjh_map);
         btGrid = findViewById(R.id.bt_grid);
         btLocation = findViewById(R.id.bt_location);
+        ivAdd = findViewById(R.id.iv_add);
+        ivRemove = findViewById(R.id.iv_remove);
+        tvLatitude = findViewById(R.id.tv_latitude);
+        tvLongitude = findViewById(R.id.tv_longitude);
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
         mapView.setTileSource(TileSourceFactory.MAPNIK);
@@ -122,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
                 GeoPoint geoPoint = null;
                 try {
                     geoPoint = mMyLocationOverlay.getGeoPoint(ctx,mapView);
+                    tvLatitude.setText("纬度：" + String.valueOf(geoPoint.getLatitude())+" ");
+                    tvLongitude.setText("经度：" + String.valueOf(geoPoint.getLongitude()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -185,6 +200,24 @@ public class MainActivity extends AppCompatActivity {
         simpleLocation.setEnabled(true);
         simpleLocation.setLocation(gp5);
         mapView.getOverlays().add(simpleLocation);
+
+        myMarkerOverlay = new MyMarkerOverlay(getApplicationContext(),mapView);
+        ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mapView.getOverlays().add(myMarkerOverlay);
+
+            }
+        });
+
+        ivRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myMarkerOverlay.removeLast();
+            }
+        });
+
+
     }
 
     private void requestPermissionsIfNecessary(String[] permissions) {
