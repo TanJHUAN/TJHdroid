@@ -11,6 +11,8 @@
 
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="网格"
+            android:backgroundTint="@color/blue_deep"
+            android:textColor="@color/white"
             android:layout_marginTop="80dp"
             android:layout_marginLeft="20dp"
             android:id="@+id/bt_grid"
@@ -20,6 +22,8 @@
             android:text="定位"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/blue_deep"
+            android:textColor="@color/white"
             android:id="@+id/bt_location"
             android:layout_below="@+id/bt_grid"
     />

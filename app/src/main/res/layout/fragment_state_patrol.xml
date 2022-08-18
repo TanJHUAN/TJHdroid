@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+            android:id="@+id/rl_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/white"
+    >
+        <ImageView
+                android:id="@+id/iv_my_location"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_location_green"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/tv_my_location"
+                  android:text="小东江"
+                  android:textSize="20sp"
+                  android:layout_toRightOf="@+id/iv_my_location"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="5dp"/>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                        >
+            <LinearLayout
+                    android:id="@+id/ll_time_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ll_oval_shape"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                          android:id="@+id/tv_time_start"
+                          android:text="2020-02-02"
+                          android:textSize="20sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                          android:textColor="@color/black"
+                          />
+                <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                           android:src="@drawable/ic_calendar"
+                           android:layout_marginLeft="10dp"
+                           android:layout_marginRight="10dp"
+                           android:layout_gravity="center_vertical"
+                           />
+
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/line"
+                    android:layout_width="30dp"
+                    android:layout_height="2dp"
+                    android:layout_toRightOf="@+id/ll_time_start"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/grey"/>
+
+            <LinearLayout
+                    android:id="@+id/ll_time_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_toRightOf="@+id/line"
+                    android:layout_marginRight="30dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ll_oval_shape"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_time_end"
+                        android:text="2020-02-02"
+                        android:textSize="20sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/black"
+                          />
+                <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                           android:src="@drawable/ic_calendar"
+                           android:layout_gravity="center_vertical"
+                           android:layout_marginLeft="10dp"
+                           android:layout_marginRight="10dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_patrol"
+            android:layout_below="@+id/rl_search_bar"
+            android:background="@color/shallow_grey"/>
+
+
+</RelativeLayout>

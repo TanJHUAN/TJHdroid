@@ -35,10 +35,10 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Osm"
             android:usesCleartextTraffic="true">
-        <activity android:name="com.example.testdemo.overlaytest.GoogleSourceActivity">
+        <activity android:name="com.example.testdemo.activities.BaseActivity">
         </activity>
         <activity
-                android:name="com.example.testdemo.HomeActivity"
+                android:name="com.example.testdemo.activities.LoginActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -46,9 +46,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name="com.example.testdemo.overlaytest.GoogleSourceActivity">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.activities.HomeActivity"
+                android:exported="true">
+        </activity>
         <activity android:name="com.example.testdemo.overlaytest.XYTileSourceActivity">
         </activity>
-        <activity android:name="com.example.testdemo.MainActivity">
+        <activity android:name="com.example.testdemo.activities.MainActivity">
         </activity>
     </application>
 

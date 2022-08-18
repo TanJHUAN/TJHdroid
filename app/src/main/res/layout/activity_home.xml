@@ -1,41 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context="com.example.testdemo.HomeActivity">
-
-    <Button
-            android:id="@+id/bt_source"
+        tools:context="com.example.testdemo.activities.HomeActivity"
+>
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="XYTileSource地图源测试"
-    />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/ll_menu"
+                android:orientation="vertical">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:background="@drawable/shape_bg_gradient_blue"
+            >
+                <ImageView
+                        android:id="@+id/iv_profile"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_profile_man"
+                        android:layout_centerInParent="true"/>
+            </RelativeLayout>
 
-    <Button
-            android:id="@+id/bt_main"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="MainActivity"
-    />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="40dp"
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:background="@color/grey"
 
-    <Button
-            android:id="@+id/bt_google"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="Google地图源"
-    />
+                    android:foreground="@drawable/ripple_ll"
+                    android:id="@+id/ll_guowang_xuncha">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/xuncha"
+                           android:layout_marginLeft="20dp"
+                           android:layout_gravity="center_vertical"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginLeft="30dp"
+                          android:text="国网巡查"
+                          android:textSize="30sp"
+                          android:layout_gravity="center_vertical"
+                          android:textStyle="bold"
+                          android:textColor="@color/black"/>
+            </LinearLayout>
 
-</LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:foreground="@drawable/ripple_ll"
+                    android:clickable="true"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:id="@+id/ll_search">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/shikong_search"
+                           android:layout_marginLeft="20dp"
+                           android:layout_gravity="center_vertical"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginLeft="30dp"
+                          android:text="时空查询"
+                          android:textSize="30sp"
+                          android:layout_gravity="center_vertical"
+                          android:textStyle="bold"
+                          android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:background="@color/white"
+                    android:clickable="true"
+                    android:foreground="@drawable/ripple_ll"
+                    android:id="@+id/ll_dianchang_xuncha">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/xuncha_dianchang"
+                           android:layout_marginLeft="20dp"
+                           android:layout_gravity="center_vertical"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginLeft="30dp"
+                          android:text="电厂巡查"
+                          android:textSize="30sp"
+                          android:layout_gravity="center_vertical"
+                          android:textStyle="bold"
+                          android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:background="@color/white"
+                    android:foreground="@drawable/ripple_ll"
+                    android:id="@+id/ll_settings">
+                <ImageView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:src="@drawable/settings"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center_vertical"/>
+                <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="系统设置"
+                        android:textSize="30sp"
+                        android:layout_gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blue_deep"/>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:id="@+id/ll_content"
+                android:orientation="vertical">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                <ImageView
+                        android:id="@+id/iv_menu"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_menu"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"/>
+                <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="巡查记录"
+                        android:id="@+id/tv_title"
+                        android:textSize="38sp"
+                        android:textColor="@color/black"
+                        android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/rl_content"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.testdemo;
+package com.example.testdemo.activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -177,6 +177,11 @@ public class MainActivity extends AppCompatActivity {
         }, this);
         mOverlay.setFocusItemsOnTap(true);
         mapView.getOverlays().add(mOverlay);
+
+        Marker marker = new Marker(mapView);
+        marker.setIcon(getResources().getDrawable(R.drawable.ic_marker));
+        marker.setPosition(new GeoPoint(39.901873, 116.326655));
+        mapView.getOverlays().add(marker);
 
         //PathOverlay 路线Overlay
         GeoPoint gp1 = new GeoPoint(40.067225, 116.369758);
