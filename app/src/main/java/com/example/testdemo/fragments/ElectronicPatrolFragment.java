@@ -1,14 +1,13 @@
 package com.example.testdemo.fragments;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.view.View;
-import android.widget.*;
-import androidx.annotation.NonNull;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,12 +15,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.example.testdemo.activities.AddStateRecordActivity;
-import com.example.testdemo.activities.HomeActivity;
 import com.example.testdemo.activities.MainActivity;
-import com.example.testdemo.activities.RecordListActivity;
 import com.example.testdemo.pojo.PatrolRecord;
 import com.example.testdemo.utils.TimePickerUtils;
 import com.example.tjhdroid.library.R;
@@ -31,10 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-//国网巡查
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class StatePatrolFragment extends BaseFragment{
-
+public class ElectronicPatrolFragment extends BaseFragment{
     @BindView(R.id.ll_time_start)
     LinearLayout llTimeStart;
 
@@ -56,7 +49,6 @@ public class StatePatrolFragment extends BaseFragment{
     @BindView(R.id.refresh)
     SwipeRefreshLayout swipeRefreshLayout;
 
-
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
 
     BaseQuickAdapter baseQuickAdapter;
@@ -67,7 +59,7 @@ public class StatePatrolFragment extends BaseFragment{
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    @OnClick({R.id.ll_time_start,R.id.ll_time_end,R.id.iv_my_location,R.id.iv_add_record})
+    @OnClick({R.id.ll_time_start,R.id.ll_time_end,R.id.iv_my_location})
     public void showTimePicker(View view){
         switch (view.getId()){
             case R.id.ll_time_start:
@@ -79,11 +71,6 @@ public class StatePatrolFragment extends BaseFragment{
             case R.id.iv_my_location:
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.iv_add_record:
-                Intent intent1 = new Intent(getActivity(), AddStateRecordActivity.class);
-                startActivity(intent1);
-                break;
         }
     }
     @Override
@@ -96,13 +83,6 @@ public class StatePatrolFragment extends BaseFragment{
 
             }
         };
-        baseQuickAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(@NonNull @NotNull BaseQuickAdapter<?, ?> adapter, @NonNull @NotNull View view, int position) {
-                Intent intent = new Intent(getActivity(), RecordListActivity.class);
-                startActivity(intent);
-            }
-        });
         rvPatrol.setAdapter(baseQuickAdapter);
         swipeRefreshLayout.setColorSchemeResources(R.color.blue_shallow);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

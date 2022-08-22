@@ -35,6 +35,18 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Osm"
             android:usesCleartextTraffic="true">
+        <activity android:name="com.example.testdemo.activities.FlawListActivity">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.activities.RecordListActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="sensor">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.activities.AddStateRecordActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="sensor">
+        </activity>
         <activity android:name="com.example.testdemo.activities.BaseActivity">
         </activity>
         <activity
@@ -50,11 +62,15 @@
         </activity>
         <activity
                 android:name="com.example.testdemo.activities.HomeActivity"
-                android:exported="true">
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:exported="true"
+                android:screenOrientation="sensor">
         </activity>
         <activity android:name="com.example.testdemo.overlaytest.XYTileSourceActivity">
         </activity>
-        <activity android:name="com.example.testdemo.activities.MainActivity">
+        <activity android:name="com.example.testdemo.activities.MainActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:screenOrientation="sensor">
         </activity>
     </application>
 

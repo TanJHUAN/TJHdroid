@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/white"
+>
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+               android:id="@+id/iv_patrol_record"
+               android:layout_marginLeft="20dp"
+               android:layout_marginTop="20dp"
+               android:layout_alignParentLeft="true"
+               android:src="@drawable/ic_patrol_record"
+               android:layout_centerVertical="true"
+               />
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/ll"
+                  android:layout_marginLeft="30dp"
+                  android:layout_centerVertical="true"
+                  android:layout_toRightOf="@+id/iv_patrol_record"
+                  android:orientation="vertical">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="巡查记录"
+                  android:textColor="@color/black"
+                  android:textSize="25sp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/tv_patrol_time"
+                  android:text="2020-01-01"
+                  android:textSize="25sp"/>
+    </LinearLayout>
+
+    <ImageView android:layout_width="32dp" android:layout_height="32dp"
+               android:src="@drawable/ic_arrow_right"
+               android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+               android:layout_marginRight="20dp"/>
+</RelativeLayout>

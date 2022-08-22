@@ -11,4 +11,6 @@
     <color name="blue_shallow">#4185CF</color>
     <color name="grey">#CAD1DA</color>
     <color name="shallow_grey">#E7EBF1</color>
+    <color name="shallower_grey">#F0F1F3</color>
+    <color name="red">#FF0000</color>
 </resources>

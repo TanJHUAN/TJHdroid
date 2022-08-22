@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="30dp"
+        android:elevation="10dp"
+        android:background="@color/white"
+        android:layout_height="200dp">
+    <ImageView
+            android:id="@+id/iv"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_tuoxi"
+            android:layout_toRightOf="@+id/iv_early_warning"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+
+    <ImageView
+            android:id="@+id/iv_early_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/early_warning"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+
+            />
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_toRightOf="@+id/iv"
+                  android:layout_marginLeft="30dp"
+                  android:orientation="vertical">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="记录名称"
+                  android:id="@+id/tv_flaw_name"
+                  android:textSize="30dp"
+                  android:textColor="@color/black"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="巡查员写的备注信息"
+                  android:id="@+id/tv_remark"
+                  android:layout_marginTop="@dimen/dp_10"
+                  android:textSize="20dp"
+                  android:textColor="@color/black"
+        />
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="发现于"
+                      android:textSize="20dp"
+                      android:layout_marginTop="20dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="2022-8-19"
+                      android:id="@+id/tv_flaw_time"
+                      android:textSize="20dp"
+                      android:layout_marginTop="20dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentRight="true"
+               android:background="@drawable/ic_remark"
+               android:layout_marginRight="30dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/tv_account"
+                  android:text="1"
+                  android:layout_centerInParent="true"
+                  android:textColor="@color/blue_shallow"
+                  android:textSize="25dp"
+                  />
+    </RelativeLayout>
+</RelativeLayout>

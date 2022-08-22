@@ -1,9 +1,13 @@
 package com.example.testdemo.activities;
+import android.content.Intent;
 import android.os.Build;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,6 +16,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.example.testdemo.fragments.ElectronicPatrolFragment;
+import com.example.testdemo.fragments.SettingsFragment;
+import com.example.testdemo.fragments.SpacetimeFragment;
 import com.example.testdemo.fragments.StatePatrolFragment;
 import com.example.testdemo.pojo.PatrolRecord;
 import com.example.tjhdroid.library.R;
@@ -31,10 +38,20 @@ public class HomeActivity extends BaseActivity {
     LinearLayout llDianchangXuncha;
     @BindView(R.id.ll_settings)
     LinearLayout llSettings;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.ll_search_view)
+    LinearLayout searchView;
+
 
 
     StatePatrolFragment statePatrolFragment;
+    SpacetimeFragment spacetimeFragment;
+    ElectronicPatrolFragment electronicPatrolFragment;
+    SettingsFragment settingsFragment;
     Fragment currentFragment;
+
+
 
 
     @Override
@@ -46,7 +63,12 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initView() {
         statePatrolFragment = new StatePatrolFragment();
+        spacetimeFragment = new SpacetimeFragment();
+        electronicPatrolFragment = new ElectronicPatrolFragment();
+        settingsFragment = new SettingsFragment();
         currentFragment = new Fragment();
+        switchFragment(statePatrolFragment);
+
 
     }
 
@@ -71,24 +93,38 @@ public class HomeActivity extends BaseActivity {
                 llSearch.setBackground(getResources().getDrawable(R.color.white));
                 llDianchangXuncha.setBackground(getResources().getDrawable(R.color.white));
                 llSettings.setBackground(getResources().getDrawable(R.color.white));
+                searchView.setVisibility(View.GONE);
+                tvTitle.setVisibility(View.VISIBLE);
+                tvTitle.setText("国网巡查");
                 break;
             case R.id.ll_search:
+                switchFragment(spacetimeFragment);
                 llSearch.setBackground(getResources().getDrawable(R.color.grey));
                 llGuowangXuncha.setBackground(getResources().getDrawable(R.color.white));
                 llDianchangXuncha.setBackground(getResources().getDrawable(R.color.white));
                 llSettings.setBackground(getResources().getDrawable(R.color.white));
+                searchView.setVisibility(View.VISIBLE);
+                tvTitle.setVisibility(View.GONE);
                 break;
             case R.id.ll_dianchang_xuncha:
+                switchFragment(electronicPatrolFragment);
                 llDianchangXuncha.setBackground(getResources().getDrawable(R.color.grey));
                 llGuowangXuncha.setBackground(getResources().getDrawable(R.color.white));
                 llSearch.setBackground(getResources().getDrawable(R.color.white));
                 llSettings.setBackground(getResources().getDrawable(R.color.white));
+                tvTitle.setVisibility(View.VISIBLE);
+                tvTitle.setText("电厂巡查");
+                searchView.setVisibility(View.GONE);
                 break;
             case R.id.ll_settings:
+                switchFragment(settingsFragment);
                 llSettings.setBackground(getResources().getDrawable(R.color.grey));
                 llGuowangXuncha.setBackground(getResources().getDrawable(R.color.white));
                 llSearch.setBackground(getResources().getDrawable(R.color.white));
                 llDianchangXuncha.setBackground(getResources().getDrawable(R.color.white));
+                tvTitle.setVisibility(View.VISIBLE);
+                tvTitle.setText("系统设置");
+                searchView.setVisibility(View.GONE);
                 break;
         }
     }
