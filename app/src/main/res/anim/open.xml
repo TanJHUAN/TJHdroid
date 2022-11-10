@@ -1,0 +1,26 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--透明度-->
+    <!--android:fromAlpha 	动画开始的透明度，从0.0 -1.0 ，0.0表示全透明，1.0表示完全不透明
+        android:toAlpha 	动画结束时的透明度，也是从0.0 -1.0 ，0.0表示全透明，1.0表示完全不透明
+        android:duration    所用时间 单位ms -->
+    <alpha
+            android:fromAlpha="0.0"
+            android:toAlpha="1.0"
+            android:duration="1000"
+            android:fillBefore="true">
+    </alpha>
+
+    <!--平移-->
+    <!--android:fromXDelta 	起始点X轴坐标，可以是数值、百分数、百分数p 三种样式，比如 50、50%、50%p
+        android:fromYDelta 	起始点Y轴从标，可以是数值、百分数、百分数p 三种样式；
+        android:toXDelta 	结束点X轴坐标
+        android:toYDelta 	结束点Y轴坐标 -->
+    <translate
+            android:fromXDelta="0"
+            android:toXDelta="40"
+            android:fromYDelta="0"
+            android:toYDelta="0"
+            android:duration="700"
+            android:fillBefore="true">
+    </translate>
+</set>
