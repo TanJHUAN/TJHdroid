@@ -69,7 +69,6 @@ public class HomeActivity extends BaseActivity {
         currentFragment = new Fragment();
         switchFragment(statePatrolFragment);
 
-
     }
 
 

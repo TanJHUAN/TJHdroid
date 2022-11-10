@@ -11,8 +11,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/OffOsm" />
+            <option value="$PROJECT_DIR$/PickerView" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/pickerview" />
             <option value="$PROJECT_DIR$/third-party" />
+            <option value="$PROJECT_DIR$/wheelview" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -22,6 +22,7 @@ public class MapTileIndex {
                 + (long) pY;
     }
 
+    //  >>:右移运算符，num >> 1,相当于num除以2
     public static int getZoom(final long pTileIndex) {
         return (int) (pTileIndex >> (mMaxZoomLevel * 2));
     }

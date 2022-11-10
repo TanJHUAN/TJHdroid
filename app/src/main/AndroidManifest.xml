@@ -35,7 +35,27 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Osm"
             android:usesCleartextTraffic="true">
-        <activity android:name="com.example.testdemo.activities.FlawListActivity">
+        <activity android:name="com.example.testdemo.activities.MapBoxActivity">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.activities.AboutActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="sensor">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.activities.AnalysisResultActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="sensor">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.activities.FlawDetailListActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="sensor">
+        </activity>
+        <activity
+                android:name="com.example.testdemo.activities.FlawListActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="sensor">
         </activity>
         <activity
                 android:name="com.example.testdemo.activities.RecordListActivity"
@@ -49,28 +69,27 @@
         </activity>
         <activity android:name="com.example.testdemo.activities.BaseActivity">
         </activity>
-        <activity
-                android:name="com.example.testdemo.activities.LoginActivity"
-                android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+        <activity android:name="com.example.testdemo.activities.LoginActivity">
         </activity>
         <activity android:name="com.example.testdemo.overlaytest.GoogleSourceActivity">
         </activity>
         <activity
                 android:name="com.example.testdemo.activities.HomeActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
-                android:exported="true"
                 android:screenOrientation="sensor">
         </activity>
         <activity android:name="com.example.testdemo.overlaytest.XYTileSourceActivity">
         </activity>
-        <activity android:name="com.example.testdemo.activities.MainActivity"
-                  android:configChanges="keyboardHidden|orientation|screenSize"
-                  android:screenOrientation="sensor">
+        <activity
+                android:name="com.example.testdemo.activities.MainActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:exported="true"
+                android:screenOrientation="sensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

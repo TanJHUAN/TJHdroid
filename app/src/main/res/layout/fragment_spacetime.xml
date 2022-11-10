@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   android:layout_width="match_parent"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/ll_search_bar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
+        android:elevation="@dimen/dp_10"
         android:background="@color/white"
 >
         <LinearLayout
@@ -17,7 +18,9 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/tv_data_class"
                       android:text="数据类型"
                       android:textSize="25dp"
                       android:textColor="@color/black"/>
@@ -37,7 +40,9 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/tv_time_search"
                       android:text="时间范围"
                       android:textSize="25dp"
                       android:textColor="@color/black"/>
@@ -82,4 +87,49 @@
             android:layout_below="@+id/ll_search_bar"
 
     />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:background="@color/white"
+                  android:visibility="gone"
+                  android:layout_below="@+id/ll_search_bar"
+                  android:id="@+id/ll_data_class_search">
+        <TextView android:layout_width="wrap_content" android:layout_height="70dp"
+                  android:id="@+id/tv_artificial"
+                  android:text="人工上传"
+                  android:textColor="@color/black"
+                  android:layout_gravity="center"
+                  android:gravity="center_vertical"
+                  android:textSize="22sp"/>
+        <View android:layout_width="match_parent"
+              android:layout_height="2dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:background="@color/shallow_grey"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="70dp"
+                  android:id="@+id/tv_drone"
+                  android:text="无人机摄影"
+                  android:textColor="@color/black"
+                  android:layout_gravity="center"
+                  android:gravity="center_vertical"
+                  android:textSize="22sp"/>
+        <View android:layout_width="match_parent"
+              android:layout_height="2dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:background="@color/shallow_grey"/>
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="70dp">
+            <Button android:layout_width="wrap_content" android:layout_height="50dp"
+                    android:id="@+id/bt_confirm"
+                    android:layout_marginRight="20dp"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:background="@color/blue_shallow"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="22sp" tools:ignore="RtlCompat"/>
+        </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import com.example.testdemo.utils.DateUtils;
 import com.example.tjhdroid.api.IMapController;
 import com.example.tjhdroid.config.Configuration;
 import com.example.tjhdroid.library.R;
@@ -135,11 +137,16 @@ public class MainActivity extends AppCompatActivity {
                 GeoPoint geoPoint = null;
                 try {
                     geoPoint = mMyLocationOverlay.getGeoPoint(ctx,mapView);
-                    tvLatitude.setText("纬度：" + String.valueOf(geoPoint.getLatitude())+" ");
-                    tvLongitude.setText("经度：" + String.valueOf(geoPoint.getLongitude()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+//                try {
+//                    geoPoint = mMyLocationOverlay.getGeoPoint(ctx,mapView);
+//                    tvLatitude.setText("纬度：" + String.valueOf(geoPoint.getLatitude())+" ");
+//                    tvLongitude.setText("经度：" + String.valueOf(geoPoint.getLongitude()));
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 mapController.animateTo(geoPoint);
                 mapView.getOverlays().add(mMyLocationOverlay);
             }
@@ -222,6 +229,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        String s = longToDate();
+        Log.i("tan",s);
 
     }
 
@@ -254,5 +263,10 @@ public class MainActivity extends AppCompatActivity {
                     permissionsToRequest.toArray(new String[0]),
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
+    }
+
+    public String longToDate(){
+        String s = DateUtils.longToDate(4035232505828218930L);
+        return s;
     }
 }

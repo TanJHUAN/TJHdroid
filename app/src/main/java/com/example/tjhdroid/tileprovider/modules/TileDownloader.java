@@ -49,7 +49,7 @@ public class TileDownloader {
     }
 
     /**
-     * downloads a tile and follows http redirects
+     * downloads a tile and follows http redirects http重定向
      * Code used to be in MapTileDownloader.TileLoader.downloadTile
      */
     public Drawable downloadTile(final long pMapTileIndex, final int redirectCount, final String targetUrl,
@@ -110,7 +110,7 @@ public class TileDownloader {
             }
             c.connect();
 
-            // Check to see if we got success
+            // Check to see if we got success 200为请求成功
             if (c.getResponseCode() != 200) {
                 switch (c.getResponseCode()) {
                     case 301:

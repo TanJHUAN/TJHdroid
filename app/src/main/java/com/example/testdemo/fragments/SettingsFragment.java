@@ -1,8 +1,16 @@
 package com.example.testdemo.fragments;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.RelativeLayout;
+import butterknife.BindView;
+import com.example.testdemo.activities.AboutActivity;
 import com.example.tjhdroid.library.R;
 
 public class SettingsFragment extends BaseFragment{
+
+    @BindView(R.id.rl_about)
+    RelativeLayout rlAbout;
 
     @Override
     public int setContentViewResId() {
@@ -11,7 +19,13 @@ public class SettingsFragment extends BaseFragment{
 
     @Override
     public void initView() {
-
+        rlAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AboutActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -23,4 +37,6 @@ public class SettingsFragment extends BaseFragment{
     public void initEvent() {
 
     }
+
+
 }

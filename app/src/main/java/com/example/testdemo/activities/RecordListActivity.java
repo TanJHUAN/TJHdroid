@@ -1,5 +1,6 @@
 package com.example.testdemo.activities;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.example.testdemo.pojo.Record;
 import com.example.tjhdroid.library.R;
@@ -43,6 +45,13 @@ public class RecordListActivity extends BaseActivity {
                 tvAccount.setText(String.valueOf(currentIndex + 1));
             }
         };
+        baseQuickAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull @NotNull BaseQuickAdapter<?, ?> adapter, @NonNull @NotNull View view, int position) {
+                Intent intent = new Intent(RecordListActivity.this, AnalysisResultActivity.class);
+                startActivity(intent);
+            }
+        });
         rvRecordList.setAdapter(baseQuickAdapter);
     }
 

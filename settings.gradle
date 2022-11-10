@@ -2,3 +2,6 @@ rootProject.name = "TJHdroid"
 include ':app'
 include ':third-party'
 include ':OffOsm'
+include ':PickerView'
+include ':wheelview'
+include ':pickerview'

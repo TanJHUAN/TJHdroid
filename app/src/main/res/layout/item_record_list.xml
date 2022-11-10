@@ -8,7 +8,7 @@
         android:layout_marginTop="30dp"
         android:elevation="10dp"
         android:background="@color/white"
-        android:layout_height="200dp">
+        android:layout_height="150dp">
     <ImageView
             android:id="@+id/iv"
             android:layout_width="150dp"
@@ -21,8 +21,8 @@
 
     <ImageView
             android:id="@+id/iv_early_warning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/early_warning"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
